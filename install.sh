@@ -175,7 +175,7 @@ if [ $stage -eq 11 ]; then
   echo "RUNNING MAKE FILE"
   make && sudo make install
   echo "KILLING USBMUXD"
-  sudo killall usbmuxd
+  sudo killall usbmuxd || true
   echo "HEADING BACK TO HOME DIRECTORY"
   cd ..
   ((stage = stage + 1))
