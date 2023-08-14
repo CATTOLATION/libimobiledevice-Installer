@@ -50,8 +50,6 @@ if [ $stage -eq 3 ]; then
   ./autogen.sh
   echo "RUNNING MAKE FILE"
   make && sudo make install
-  echo "RUNNING LDCONFIG"
-  sudo ldconfig
   echo "HEADING BACK TO HOME DIRECTORY"
   cd ..
   ((stage = stage + 1))
@@ -77,12 +75,10 @@ fi
 if [ $stage -eq 5 ]; then
   echo "Stage 5 : INSTALLING LIBIMOBILEDEVICE-GLUE"
   echo "RUNNING ./autogen.sh FILE"
-  PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ./autogen.sh || true # Incase of error, Rerun autogen.sh
-  PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ./autogen.sh
+  ./autogen.sh || true # Incase of error, Rerun autogen.sh
+  ./autogen.sh
   echo "RUNNING MAKE FILE"
   make && sudo make install
-  echo "RUNNING LDCONFIG"
-  sudo ldconfig
   echo "HEADING BACK TO HOME DIRECTORY"
   cd ..
   ((stage = stage + 1))
@@ -108,12 +104,10 @@ fi
 if [ $stage -eq 7 ]; then
   echo "Stage 7 : INSTALLING LIBUSBMUXD"
   echo "RUNNING ./autogen.sh FILE"
-  PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ./autogen.sh || true # Incase of error, Rerun autogen.sh
-  PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ./autogen.sh
+  ./autogen.sh || true # Incase of error, Rerun autogen.sh
+  ./autogen.sh
   echo "RUNNING MAKE FILE"
   make && sudo make install
-  echo "RUNNING LDCONFIG"
-  sudo ldconfig
   echo "HEADING BACK TO HOME DIRECTORY"
   cd ..
   ((stage = stage + 1))
@@ -139,12 +133,10 @@ fi
 if [ $stage -eq 9 ]; then
   echo "Stage 9 : INSTALLING LIBIMOBILEDEVICE"
   echo "RUNNING ./autogen.sh FILE"
-  PKG_CONFIG_PATH=/usr/local/lib/pkgconfig PYTHON=/usr/bin/python3 ./autogen.sh --enable-debug || true # Incase of error, Rerun autogen.sh
-  PKG_CONFIG_PATH=/usr/local/lib/pkgconfig PYTHON=/usr/bin/python3 ./autogen.sh --enable-debug
+  ./autogen.sh --enable-debug || true # Incase of error, Rerun autogen.sh
+  PYTHON=/usr/bin/python3 ./autogen.sh --enable-debug
   echo "RUNNING MAKE FILE"
   make && sudo make install
-  echo "RUNNING LDCONFIG"
-  sudo ldconfig
   echo "HEADING BACK TO HOME DIRECTORY"
   cd ..
   ((stage = stage + 1))
@@ -170,12 +162,10 @@ fi
 if [ $stage -eq 11 ]; then
   echo "Stage 11 : INSTALLING USBMUXD"
   echo "RUNNING ./autogen.sh FILE"
-  PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ./autogen.sh --prefix=/usr --sysconfdir=/etc --localstatedir=/var --runstatedir=/run || true # Incase of error, Rerun autogen.sh
-  PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ./autogen.sh --prefix=/usr --sysconfdir=/etc --localstatedir=/var --runstatedir=/run
+  ./autogen.sh || true # Incase of error, Rerun autogen.sh
+  ./autogen.sh
   echo "RUNNING MAKE FILE"
   make && sudo make install
-  echo "KILLING USBMUXD"
-  sudo killall usbmuxd || true
   echo "HEADING BACK TO HOME DIRECTORY"
   cd ..
   ((stage = stage + 1))
@@ -201,12 +191,10 @@ fi
 if [ $stage -eq 13 ]; then
   echo "Stage 13 : INSTALLING LIBIRECOVERY"
   echo "RUNNING ./autogen.sh FILE"
-  PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ./autogen.sh || true # Incase of error, Rerun autogen.sh
-  PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ./autogen.sh
+  ./autogen.sh || true # Incase of error, Rerun autogen.sh
+  ./autogen.sh
   echo "RUNNING MAKE FILE"
   make && sudo make install
-  echo "RUNNING LDCONFIG"
-  sudo ldconfig
   echo "HEADING BACK TO HOME DIRECTORY"
   cd ..
   ((stage = stage + 1))
@@ -232,12 +220,10 @@ fi
 if [ $stage -eq 15 ]; then
   echo "Stage 15 : INSTALLING IDEVICERESTORE"
   echo "RUNNING ../autogen.sh FILE"
-  PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ./autogen.sh || true # Incase of error, Rerun autogen.sh
-  PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ./autogen.sh
+  ./autogen.sh || true # Incase of error, Rerun autogen.sh
+  ./autogen.sh
   echo "RUNNING MAKE FILE"
   make && sudo make install
-  echo "RUNNING LDCONFIG"
-  sudo ldconfig
   echo "HEADING BACK TO HOME DIRECTORY"
   cd ..
   ((stage = stage + 1))
@@ -263,12 +249,10 @@ fi
 if [ $stage -eq 17 ]; then
   echo "Stage 17 : INSTALLING IDEVICEINSTALLER"
   echo "RUNNING ../autogen.sh FILE"
-  PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ./autogen.sh || true # Incase of error, Rerun autogen.sh
-  PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ./autogen.sh
+  ./autogen.sh || true # Incase of error, Rerun autogen.sh
+  ./autogen.sh
   echo "RUNNING MAKE FILE"
   make && sudo make install
-  echo "RUNNING LDCONFIG"
-  sudo ldconfig
   echo "HEADING BACK TO HOME DIRECTORY"
   cd ..
   ((stage = stage + 1))
@@ -294,13 +278,17 @@ fi
 if [ $stage -eq 19 ]; then
   echo "Stage 19 : INSTALLING IFUSE"
   echo "RUNNING ../autogen.sh FILE"
-  PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ./autogen.sh || true # Incase of error, Rerun autogen.sh
-  PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ./autogen.sh
+  ./autogen.sh || true # Incase of error, Rerun autogen.sh
+  ./autogen.sh
   echo "RUNNING MAKE FILE"
   make && sudo make install
-  echo "RUNNING LDCONFIG"
-  sudo ldconfig
   echo "HEADING BACK TO HOME DIRECTORY"
   cd ..
   ((stage = stage + 1))
+fi
+
+if [ $stage -eq 20 ]; then
+  echo "Stage 20 : RUNNING LDCONFIG"
+  sudo ldconfig
+  echo "FINISHED"
 fi
